@@ -21,7 +21,7 @@ const addRecipe = async (req, res, err) => {
 
 }
 
-// GET : showing all recipes of range
+// GET : showing all recipes of range or name
 const getRecipes = async (req, res, err) => {
 
     // getting all recipes if range is zero
@@ -29,23 +29,24 @@ const getRecipes = async (req, res, err) => {
     try {
         // getting the range 
         let range = req.query.range
+        let name = req.query.name
 
         // just in case something went wrong, more security shit
         if (!range)
             range = 0
 
         // trying to get 
-        const data = await Recipe.find().limit(+range)
+        // finding any record which have the name in it, "i" for case insensitive
+        const data = await Recipe.find({name: {"$regex": name, "$options":"i"}}).limit(+range)
 
-        if(data.length == 0 || !data)
+        if(data.length == 0)
             res.send("Empty db")
-
-        res.send(data)
+        else
+            res.send(data)
 
     }catch(e) {
         res.send(e.message)
     }
-
 
 }
 
