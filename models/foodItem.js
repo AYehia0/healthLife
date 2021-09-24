@@ -81,10 +81,6 @@ itemSchema.pre('save', function(){
     ) 
 })
 
-// itemSchema.pre('updateOne', ()=>{
-//     console.log("Trying to add/edit")
-// })const cors = require('cors')
-
 const FoodItem = mongoose.model('Item', itemSchema)
 
 module.exports = FoodItem
