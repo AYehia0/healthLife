@@ -1,7 +1,7 @@
 {
-  "name": "the_food_api",
+  "name": "HealthLife",
   "version": "1.0.0",
-  "description": "Simple API to store and get food info.",
+  "description": "Application to manage weight loss process",
   "main": "index.js",
   "scripts": {
     "dev": "nodemon server.js"
