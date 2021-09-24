@@ -1,7 +1,7 @@
 // the db
 require('./models/db')
 const express = require('express')
-const recipeRouter = require('./routes/recipeRoutes')
+const recipeRouter = require('./routes/foodRoutes/recipeRoutes')
 const foodItemRouter = require('./routes/foodItemRoutes')
 const app = express()
 
