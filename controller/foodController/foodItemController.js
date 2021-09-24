@@ -1,4 +1,4 @@
-const Item = require('../models/foodItem')
+const Item = require('../../models/food/foodItem')
 
 ///////////////////////////////////// FOOD ITEMS ///////////////////////////////////// 
 
