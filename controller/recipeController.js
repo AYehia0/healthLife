@@ -1,5 +1,6 @@
-const Recipe = require('../models/foodModel')
+const Recipe = require('../models/recipe')
 
+///////////////////////////////////// RECIPE ///////////////////////////////////// 
 
 // POST request to add food 
 const addRecipe = async (req, res, err) => {
@@ -50,13 +51,6 @@ const getRecipes = async (req, res, err) => {
 
 }
 
-// TODO : 
-    // add vim curl thing http-****
-    // navigate and change the keys
-    // add more models 
-    // there is that thing i don't really remember lol
-    // fix the append "a" key in vim, it's damn too slow 
-
 // PUT : edit a recipe
 const editRecipe = async (req, res, err) => {
     // don't forget to add allowed list here
@@ -66,6 +60,7 @@ const editRecipe = async (req, res, err) => {
     const sentKeys = Object.keys(req.body)
 
     isVaildField = sentKeys.every( item => allowedFields.includes(item) )
+    isVaildSubField = false
 
     // checking for sub fields : facts
     if (sentKeys.includes('facts')) {
@@ -98,11 +93,12 @@ const main =  (req, res, err) => {
 }
 
 
+
+
 // exporting the modules
 module.exports = {
     main,
     addRecipe,
     getRecipes,
     editRecipe
-
 }

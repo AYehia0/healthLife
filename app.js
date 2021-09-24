@@ -1,18 +1,18 @@
+// the db
+require('./models/db')
 const express = require('express')
-const routers = require('./routes/routes')
+const recipeRouter = require('./routes/recipeRoutes')
+const foodItemRouter = require('./routes/foodItemRoutes')
 const app = express()
 
-
-// max range
-const maxRange = 10
-
 // middlewares
+
 // accepting json from POST requests
 app.use(express.json())
 app.use(express.urlencoded({extended: true}))
 
-
 // using the routes
-app.use(routers)
+app.use(recipeRouter)
+app.use(foodItemRouter)
 
 module.exports = app
