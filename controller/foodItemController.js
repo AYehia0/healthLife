@@ -89,7 +89,7 @@ const editCategory = async (req, res, err) => {
 
     try {
         const categoryId = req.params.id
-        let item = await Item.findOne({'category.facts._id':categoryId}) 
+        let item = await Item.findOne({'category._id':categoryId}) 
 
         if (!item)
             throw new Error("Item not found")
