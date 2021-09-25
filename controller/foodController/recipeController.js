@@ -1,4 +1,4 @@
-const Recipe = require('../models/food/recipe')
+const Recipe = require('../../models/food/recipe')
 
 ///////////////////////////////////// RECIPE ///////////////////////////////////// 
 

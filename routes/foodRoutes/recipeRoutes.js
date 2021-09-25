@@ -1,5 +1,5 @@
 const router = require('express').Router({mergeParams: true })
-const controller = require('../controller/recipeController')
+const controller = require('../../controller/foodController/recipeController')
 
 // main route
 router.get('/', controller.main)
