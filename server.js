@@ -1,4 +1,4 @@
-const app = require('./app')
+const app = require('./backend/app')
 
 
 const PORT = process.env.PORT || 8080

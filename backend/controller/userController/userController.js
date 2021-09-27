@@ -32,10 +32,13 @@ const login = async (req, res) => {
         // generate the token 
         const token = await user.getToken()
 
+
         // sending the token in th
         res.send({token: token})
         
     } catch (e) {
+
+        console.log(e)
        res.send(e) 
     }
 }
