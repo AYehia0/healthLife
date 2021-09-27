@@ -33,3 +33,34 @@ Project Description:
         - Change password
         - Delete Account
 
+
+    - Front-End: 
+
+        - Using Angular, Angular-Material
+
+        Pages :
+
+            - Land page (no login): 
+
+                - Nav bar : home, login, register, logout, profile
+                - Background Image
+                - Footer : contains some info about : page
+
+            - Home page (login required) :
+
+                - Showing user total calories.
+                - Add/Remove food
+                - Add/Remove exersise 
+                - Launch, Breakfast, Dinner, Snacks and Exersises
+
+            - Profile page (login required):
+
+                - Edit user info
+
+            - Admin page (admin only): 
+                
+                - DB things : Adding, removing, editing 
+                - Viewing Users
+
+
+
