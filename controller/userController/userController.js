@@ -33,7 +33,7 @@ const login = async (req, res) => {
         const token = await user.getToken()
 
         // sending the token in th
-        res.send(`User has been logged in : ${token}`)
+        res.send({token: token})
         
     } catch (e) {
        res.send(e) 
