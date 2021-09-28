@@ -2,6 +2,7 @@ const mongoose = require('mongoose')
 const validator = require('validator')
 const bcrybt = require('bcryptjs')
 const jwt = require('jsonwebtoken')
+
 const Schema = mongoose.Schema
 
 /* 
@@ -26,6 +27,10 @@ const mealId = {
     ref: "Item",
     required: true
 }
+
+function isUser() {
+    return this.role === 'user'
+}
             
 const userSchema = new Schema({
     name: {
@@ -33,15 +38,30 @@ const userSchema = new Schema({
         trim: true,
         required: true
     },
+    role: {
+        type: String,
+        enum: ['user', 'admin'],
+        default: 'user',
+        required: true
+    },
     email: {
         type: String,
         trim: true,
-        required: true,
+        required: function() {
+            return this.role === 'user'
+        },
         unique: true,
         validate(value){
             if (!validator.isEmail(value))
                 throw new Error("Invalid Email")
         }
+    },
+    adminEmail: {
+        type: String,
+        required: function() {
+            return this.role === 'admin'
+        },
+        trim: true,
     },
     password: {
         type: String,
@@ -51,70 +71,58 @@ const userSchema = new Schema({
                 throw new Error("Weak Password")
         }
     },
-
     token: {
         type: String
     },
     personal: {
-        age: {
-            type: Number,
-            required: true,
-        },
-        gender: {
-            type: String,
-            enum: ['male', 'female'],
-            default: "male"
-        },
-        activity: {
-            type: String,
-            // [Low, Moderate, High, Very High]:
-            enum: ['low', 'mod', 'high', 'ext'],
-            default: "mod"
-        },
-        height: { // cm
-            type: Number,
-            required: true,
-        },
-        weight: { // kg
-            type: Number,
-            required: true
-        },
-        startCals: {
-            type: Number,
-            default: 0
-        }
-    },
-    favourites: [
-        {
-            type: {
-                type: String,
-                enum: ['breakfast', 'dinner', 'launch', 'snack', 'workout'],
+        type: {
+            age: {
+                type: Number,
                 required: true
             },
-            mealId: mealId
-        }
-    ],
-    meals: [
-        {
-            date: {
-                type: Date,
-                default: Date.now
+            gender: {
+                type: String,
+                enum: ['male', 'female'],
+                default: "male"
             },
-            breakfast: [{
-                mealId: mealId
-            }],
-            dinner: [{
-                mealId: mealId
-            }],
-            launch: [{
-                mealId: mealId
-            }],
-            snacks: [{
-                mealId: mealId
-            }],
-            //workout: []
-        }
-    ]
+            activity: {
+                type: String,
+                // [Low, Moderate, High, Very High]:
+                enum: ['low', 'mod', 'high', 'ext'],
+                default: "mod"
+            },
+            height: { // cm
+                type: Number,
+                required: true,
+            },
+            weight: { // kg
+                type: Number,
+                required: true
+            },
+            startCals: {
+                type: Number,
+                default: 0
+            },
+            favourites: [
+                {
+                    type: {
+                        type: String,
+                        enum: ['breakfast', 'dinner', 'launch', 'snack', 'workout'],
+                        required: true
+                    },
+                    mealId: mealId
+                }
+            ],
+            meals: [{
+                    date: {
+                        type: Date,
+                        default: Date.now
+                    },
+                    //workout: []
+                }]
+        },
+        required: isUser()
+   },
 }, 
 {
     // logging modification
@@ -124,6 +132,9 @@ const userSchema = new Schema({
         transform(doc, ret) {
             delete ret.password
             delete ret.__v
+            delete ret.role
+            if (doc.role == 'admin')
+                delete ret.mealSpecific
         }
 }})
 
@@ -177,7 +188,6 @@ userSchema.methods.getToken = async function() {
 
 // creating the model 
 const User = mongoose.model('User', userSchema)
-
 
 // exporting
 module.exports = User
