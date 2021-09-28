@@ -151,9 +151,15 @@ userSchema.pre('save', function(){
 })
 
 // login user 
-userSchema.statics.login = async (email, password) => {
+userSchema.statics.login = async (email, password, role) => {
     // finding the user by its email
-    const user = await User.findOne({email: email})
+
+    let user = null
+
+    if (role == 'user')
+        user = await User.findOne({email: email})
+    else 
+        user = await User.findOne({emailAdmin: email})
 
     if (!user)
         throw new Error("User isn't registered !")

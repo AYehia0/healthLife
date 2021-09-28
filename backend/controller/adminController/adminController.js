@@ -26,7 +26,7 @@ const login = async (req, res) => {
         const userData = req.body
 
         // finding the user
-        const user = await User.login(userData.adminEmail, userData.password)
+        const user = await User.login(userData.adminEmail, userData.password, 'admin')
 
         // generate the token 
         const token = await user.getToken()
