@@ -10,6 +10,7 @@ const foodItemRouter = require('./routes/foodRoutes/foodItemRoutes')
 
 // user things
 const userRoutes = require('./routes/userRoutes/userRoutes')
+const adminRoutes = require('./routes/adminRoutes/adminRoutes')
 
 const app = express()
 
@@ -24,5 +25,6 @@ app.use(express.urlencoded({extended: true}))
 app.use(recipeRouter)
 app.use(foodItemRouter)
 app.use('/user', userRoutes)
+app.use('/topSecretRoute', adminRoutes)
 
 module.exports = app
