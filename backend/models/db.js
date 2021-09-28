@@ -2,7 +2,7 @@
 const mongoose = require('mongoose')
 mongoose.Promise = global.Promise
 
-const dbNAME = "FoodDB"
+const dbNAME = "TestDB"
 const dbURL = `mongodb://localhost:27017/${dbNAME}`
 
 mongoose.connect(dbURL, {
