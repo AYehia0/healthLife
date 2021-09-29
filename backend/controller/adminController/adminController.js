@@ -72,7 +72,7 @@ const profile = async (req, res) => {
     try {
 
         // showing the user 
-        const user = req.admin
+        const user = req.user
 
         res.send(user)
         
