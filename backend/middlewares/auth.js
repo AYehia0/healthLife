@@ -8,7 +8,13 @@ const auth = async (req, res, next) => {
     try {
 
         // check if the user is authorized by checking the token in the db with the one in the headers
-        const sentToken = req.header('Authorization').replace('Bearer ', '')
+
+        // checking if the header has Auth
+        const authHeader = req.header('Authorization')
+        if (!authHeader)
+            throw new Error("Authorization isn't set in the headers")
+
+        const sentToken = authHeader.replace('Bearer ', '')
 
         // if it's not vaild it will fire an error
         const valid = jwt.verify(sentToken, process.env.JWTSECRET)
