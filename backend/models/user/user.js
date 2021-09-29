@@ -121,7 +121,9 @@ const userSchema = new Schema({
                     //workout: []
                 }]
         },
-        required: isUser()
+        required: function () {
+            return this.role === 'user'
+        }
    },
 }, 
 {
