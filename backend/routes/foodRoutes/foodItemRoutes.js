@@ -1,14 +1,15 @@
 const router = require('express').Router({mergeParams: true })
 const controller = require('../../controller/foodController/foodItemController')
+const auth = require('../../middlewares/auth')
 
 // add Item
-router.post('/food', controller.addItem)
+router.post('/food', auth, controller.addItem)
 
 // pushing category to the FoodItem
-router.post('/category/:id', controller.addCategory)
+router.post('/category/:id', auth, controller.addCategory)
 
 // editing a category
-router.put('/category/:id', controller.editCategory)
+router.put('/category/:id', auth, controller.editCategory)
 
 // get Items 
 // search by name + range ,,, 0 range returns all
@@ -16,7 +17,7 @@ router.put('/category/:id', controller.editCategory)
 router.get('/food', controller.getItems)
 
 // edit Item 
-router.put('/food/:id', controller.editItem)
+router.put('/food/:id', auth,  controller.editItem)
 
 module.exports = router
 
