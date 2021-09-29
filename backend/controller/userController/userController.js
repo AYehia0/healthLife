@@ -12,12 +12,20 @@ const register = async (req, res) => {
         // saving
         await user.save()
 
-        res.send(`User has been created : ${user}`)
+        res.status(200).send({
+            status: true,
+            message: "Register is done!",
+            data: userData
+        })
         
     } catch (e) {
-       res.send(e.message) 
+        let message = e.message.includes('E11000') ? "Email Already Exists" : e.message
+        res.send({
+            status: false,
+            message: message,
+            data: ""
+        }) 
     }
-
 }
 
 // login a user
@@ -34,12 +42,18 @@ const login = async (req, res) => {
 
 
         // sending the token in th
-        res.send({token: token})
+         res.status(200).send({
+            status: true,
+            message: "Login: success",
+            data: token
+        })
         
     } catch (e) {
-
-        console.log(e)
-       res.send(e) 
+        res.send({
+            status: false,
+            message: e.message,
+            data: ""
+        }) 
     }
 }
 
@@ -58,11 +72,19 @@ const logout = async (req, res) => {
         user.token = ""
 
         await user.save()
-        
-        res.send("Logged out !!!")
+
+        res.status(200).send({
+            status: true,
+            message: "Logged out !!!",
+            data: ""
+        })
         
     } catch (e) {
-       res.send(e.message) 
+        res.send({
+                status: false,
+                message: e.message,
+                data: ""
+        }) 
     }
 }
 
@@ -71,14 +93,22 @@ const logout = async (req, res) => {
 const profile = async (req, res) => {
 
     try {
-
         // showing the user 
         const user = req.user
-
-        res.send(user)
         
+        res.status(200).send({
+            status: true,
+            message: "",
+            data: user
+        })
+        
+       
     } catch (e) {
-       res.send(e.message) 
+        res.send({
+                status: false,
+                message: e.message,
+                data: ""
+        }) 
     }
 }
 
