@@ -1,7 +1,6 @@
 const router = require('express').Router()
 const controller = require('../../controller/adminController/adminController')
-const auth = require('../../middlewares/auth')
-
+const auth = require('../../middlewares/adminAuth')
 
 // register a user
 router.post('/register-admin', controller.register)
@@ -14,7 +13,6 @@ router.get('/logout-admin', auth, controller.logout)
 
 // profile
 router.get('/profile-admin', auth, controller.profile)
-
 
 
 module.exports = router

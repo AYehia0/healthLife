@@ -1,6 +1,6 @@
 const router = require('express').Router({mergeParams: true })
 const controller = require('../../controller/foodController/foodItemController')
-const auth = require('../../middlewares/auth')
+const auth = require('../../middlewares/adminAuth')
 
 // add Item
 router.post('/food', auth, controller.addItem)

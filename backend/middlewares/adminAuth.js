@@ -1,4 +1,4 @@
-// Authorization middleware 
+// Authorization middleware for Admin
 
 const jwt = require('jsonwebtoken')
 const User = require('../models/user/user')
@@ -28,6 +28,11 @@ const auth = async (req, res, next) => {
 
         if (!userInDB)
             throw new Error("User not found! or Token has been expired")
+
+        // checking the role 
+        // it's always a good practice to check in the db 
+        if (userInDB.role === 'user')
+            throw new Error("Invalid Token: NO ADMIN")
 
         // setting the request
         req.user = userInDB
