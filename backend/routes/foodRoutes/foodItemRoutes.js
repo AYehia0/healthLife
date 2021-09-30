@@ -16,6 +16,9 @@ router.put('/category/:id', auth, controller.editCategory)
 // curl -X GET "localhost:8080/food?name=pie&range=0" 
 router.get('/food', controller.getItems)
 
+// get item by id
+router.get('/food/:id', controller.getItemById)
+
 // edit Item 
 router.put('/food/:id', auth,  controller.editItem)
 
