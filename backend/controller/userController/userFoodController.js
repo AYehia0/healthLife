@@ -102,6 +102,66 @@ const userGetAllMeals = async (req, res) => {
 
 }
 
+const getFoodByCategoryType = async (req, res) => {
+    try {
+       
+        // getting user's info 
+        const userTypes = ['breakfast', 'dinner', 'launch', 'snack']
+        const userMeals = req.user.food.meals
+        const finalResult = []
+        // searching user for meals by type
+
+        for (let type of userTypes) {
+            
+            const searchResult = []
+            for (meal of userMeals) {
+
+                const mealId = meal.mealId
+                
+                // getting info 
+                const mealInfo = await Item.findById(mealId)
+                const mealName = mealInfo.name
+                const types = mealInfo.category.find(el => el.type = type)
+                const mealCals = types.cals
+                const facts = types.facts
+
+                for (cate of meal.categories) {
+                    if (cate.type == type){
+
+                        // get the count 
+                        searchResult.push({
+                            mealId: mealId,
+                            name: mealName,
+                            count: cate.count,
+                            cals: mealCals,
+                            facts: facts
+                        })
+                    }
+                }
+            }
+            finalResult.push({
+                type: type,
+                result: searchResult
+            })
+        }
+        res.status(200).send({
+            status: true,
+            message: "Search: Success",
+            data: finalResult
+        })
+        
+        
+    } catch (e) {
+        console.log(e)
+         res.send({
+            status: false,
+            message: "Can't Search, something is wrong",
+            data: e.message
+        })       
+    }
+
+
+}
 // user can delete a meal from their meals
 const userDeleteFood = async (req, res) => {
 
