@@ -21,6 +21,30 @@ const addItem = async (req, res, err) => {
     }
 
 }
+
+const getItemById = async (req, res) => {
+
+    try {
+        const itemId = req.params.id
+
+        const item = await Item.findById(itemId)
+        if (!item)
+            res.send("Error")
+
+        // done
+         res.status(200).send({
+            status: true,
+            message: "Get item : success",
+            data: item
+        })
+        
+    }catch(e) {
+        res.send(e.message)
+    }
+
+
+}
+
 // GET : showing all recipes of range or name
 const getItems = async (req, res, err) => {
 
@@ -40,12 +64,12 @@ const getItems = async (req, res, err) => {
         const data = await Item.find({name: {"$regex": name, "$options":"i"}}).limit(+range)
 
         if(data.length == 0)
-            res.send("Empty db")
+            res.send([])
         else
             res.send(data)
 
     }catch(e) {
-        res.send(e.message)
+        res.send(e)
     }
 
 }
@@ -150,9 +174,11 @@ const editItem = async (req, res, err) => {
     }
 }
 
+
 // exporting the modules
 module.exports = {
     addItem,
+    getItemById,
     getItems,
     editItem,
     addCategory,
