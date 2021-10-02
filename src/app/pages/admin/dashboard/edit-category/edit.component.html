@@ -1,0 +1,28 @@
+<mat-card>
+    <mat-card-title>{{name}}</mat-card-title>
+    <form [formGroup]="editFoodForm" (submit)="onEditCategory()">
+        <mat-form-field>
+            <input matInput type="text" placeholder="Type" required formControlName="type">
+        </mat-form-field>
+
+        <div formGroupName="facts">
+            <mat-form-field>
+                <input matInput type="number" placeholder="Protein" required formControlName="protein">
+            </mat-form-field>
+
+            <mat-form-field>
+                <input matInput type="number" placeholder="Fat" required formControlName="fat">
+            </mat-form-field>
+
+            <mat-form-field>
+                <input matInput type="number" placeholder="Carb" required formControlName="carb">
+            </mat-form-field>
+
+        </div>
+
+        <button mat-raised-button color="primary">Add Category</button>
+    </form>
+</mat-card>
+
+
+

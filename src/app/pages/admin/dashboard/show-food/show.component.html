@@ -1,0 +1,55 @@
+
+<table mat-table
+       [dataSource]="allFood" multiTemplateDataRows
+       class="mat-elevation-z8">
+  <ng-container matColumnDef="{{column}}" *ngFor="let column of columnsToDisplay;">
+    <th mat-header-cell *matHeaderCellDef > {{column}} </th>
+    <td mat-cell *matCellDef="let element; ">{{element[column]}} 
+
+      <button mat-raised-button color="warn" *ngIf="column == 'mod'" (click)="deleteFoodItem(element?._id)">Delete Food</button>
+      <button mat-raised-button color="primary" *ngIf="column == 'mod'" routerLink="/admin/dashboard/add-category/{{element.name}}/{{element?._id}}">Add category</button>  
+      <button mat-raised-button color="primary" *ngIf="column == 'mod'" routerLink="/admin/dashboard/edit-food/{{element.name}}/{{element?._id}}">Edit Food</button>  
+    </td>
+        
+  </ng-container>
+
+  <!-- Expanded Content Column - The detail row is made up of this one column that spans across all columns -->
+  <ng-container matColumnDef="expandedDetail">
+
+    <td mat-cell *matCellDef="let element" [attr.colspan]="columnsToDisplay.length">
+      <div class="example-element-detail"
+           [@detailExpand]="element == expandedElement ? 'expanded' : 'collapsed'">
+        
+        <!-- Here is the expandaple thing -->
+        <div class="detail">
+            <mat-accordion>
+                <mat-expansion-panel *ngFor="let meal of element.category">
+                <mat-expansion-panel-header>
+                    <mat-panel-title>
+                        {{meal.type}} - {{meal.cals}} 
+                    </mat-panel-title>
+
+                </mat-expansion-panel-header>
+                <p>Protein: {{meal.facts.protein}}</p>
+                <p>Carbs: {{meal.facts.carb}}</p>
+                <p>Fats: {{meal.facts.fat}}</p>
+
+                <br>
+                <button mat-raised-button color="warn" (click)="deleteCategory(meal._id)">Delete category</button> 
+                <button mat-raised-button color="primary" routerLink="/admin/dashboard/edit-category/{{meal?.type}}/{{meal?._id}}">Edit category</button> 
+
+                </mat-expansion-panel>
+            </mat-accordion>
+        </div>
+      </div>
+    </td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="columnsToDisplay"></tr>
+  <tr mat-row *matRowDef="let element; columns: columnsToDisplay;"
+      class="example-element-row"
+      [class.example-expanded-row]="expandedElement === element"
+      (click)="expandedElement = expandedElement === element ? null : element">
+  </tr>
+  <tr mat-row *matRowDef="let row; columns: ['expandedDetail']" class="example-detail-row"></tr>
+</table>

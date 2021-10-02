@@ -1,0 +1,27 @@
+
+<mat-card>
+    <form [formGroup]="editProfileForm" (submit)="onEdit()">
+        <mat-form-field>
+            <input matInput type="text" placeholder="Name" required formControlName="name"  [ngModel]="user?.name"  [value]="user?.name">
+        </mat-form-field>
+
+<br>
+        <mat-form-field>
+            <input matInput type="password" placeholder="Password" formControlName="password">
+        </mat-form-field>
+
+<br>
+        <mat-form-field>
+            <input matInput type="number" placeholder="Weight" required formControlName="weight" [ngModel]="user?.personal?.weight" [value]="user?.personal.weight">
+        </mat-form-field>
+
+<br>
+        <mat-form-field>
+            <input matInput type="number" placeholder="Height" required formControlName="height" [ngModel]="user?.personal?.height" [value]="user?.personal.height">
+        </mat-form-field>
+
+<br>
+        <button mat-raised-button color="primary">Update</button>
+    </form>
+</mat-card>
+

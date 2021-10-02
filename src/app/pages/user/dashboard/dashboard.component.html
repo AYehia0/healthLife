@@ -1,0 +1,236 @@
+<mat-card >
+    <mat-card-title>Total Calories:  {{userCurrentCals}}/{{user?.personal?.startCals}}</mat-card-title>
+    <br>
+    <mat-card-subtitle>Protein : {{user?.personal?.needs?.protein}}</mat-card-subtitle>
+    <mat-card-subtitle>Carbs : {{user?.personal?.needs?.carb}}</mat-card-subtitle>
+    <mat-card-subtitle>Fat : {{user?.personal?.needs?.fat}}</mat-card-subtitle>
+</mat-card>
+
+<br>
+
+
+<mat-card>
+    <mat-card-title>Breakfast:  </mat-card-title>
+    <br>
+    <form class="search-form" (submit)="onSearch('breakfast'); $event.preventDefault()" >
+        <mat-form-field class="search-full-width" appearance="fill">
+            <mat-label>Search Food ...</mat-label>
+            <input type="text" matInput [formControl]="searchForm" placeholder="Food">
+        </mat-form-field>
+    </form>
+    <br>
+
+    <h2 *ngIf="getMealsByCategoryType('breakfast')">Meals</h2>
+    <mat-card *ngFor="let meal of getMealsByCategoryType('breakfast')">
+        <mat-card-title>{{meal?.name}}</mat-card-title>
+        <mat-card-header>Count: {{meal?.count}}</mat-card-header>
+        <mat-card-header>Total Calories: {{meal?.cals * meal?.count}}</mat-card-header>
+        <mat-card-header>Protein: {{meal?.facts?.protein}} Carbs: {{meal?.facts?.carb}} Fats: {{meal?.facts?.fat}}</mat-card-header>
+
+        <br>
+
+        <button mat-raised-button color="warn" (click)="deleteMeal(meal.mealId, 'breakfast')">Delete</button>
+
+    </mat-card>
+
+
+    <br>
+    <mat-accordion *ngIf="searchResults.category == 'breakfast'">
+        <mat-expansion-panel *ngFor="let meal of searchResults.result">
+        <mat-expansion-panel-header>
+            <mat-panel-title>
+                {{meal.name}}
+            </mat-panel-title>
+        </mat-expansion-panel-header>
+
+        <div *ngFor="let detail of meal.category">
+            <mat-expansion-panel>
+                <mat-expansion-panel-header>
+                    <mat-panel-title>
+                    Calories Per: {{detail.type}} : {{detail.cals}}
+                    </mat-panel-title>
+               </mat-expansion-panel-header>
+                <p>Protein: {{detail.facts.protein}}</p>
+                <p>Carbs: {{detail.facts.carb}}</p>
+                <p>Fats: {{detail.facts.fat}}</p>
+
+                <button mat-raised-button color="primary" [value]="meal._id" (click)="addFood(meal._id, 'breakfast', detail.type)" >Add Food</button>
+            </mat-expansion-panel>
+        </div>
+        </mat-expansion-panel>
+    </mat-accordion>
+
+</mat-card>
+
+<br>
+<mat-card>
+    <mat-card-title>Launch:  </mat-card-title>
+    <br>
+    <form class="search-form" (submit)="onSearch('launch'); $event.preventDefault()" >
+        <mat-form-field class="search-full-width" appearance="fill">
+            <mat-label>Search Food ...</mat-label>
+            <input type="text" matInput [formControl]="searchForm" placeholder="Food">
+        </mat-form-field>
+    </form>
+    <br>
+
+    <h2 *ngIf="getMealsByCategoryType('launch')">Meals</h2>
+    <mat-card *ngFor="let meal of getMealsByCategoryType('launch')">
+        <mat-card-title>{{meal?.name}}</mat-card-title>
+        <mat-card-header>Count: {{meal?.count}}</mat-card-header>
+        <mat-card-header>Total Calories: {{meal?.cals * meal?.count}}</mat-card-header>
+        <mat-card-header>Protein: {{meal?.facts?.protein}}, Carbs: {{meal?.facts?.carb}} Fats:{{meal?.facts?.fat}}  </mat-card-header>
+
+        <br>
+
+        <button mat-raised-button color="warn" (click)="deleteMeal(meal.mealId, 'launch')">Delete</button>
+
+    </mat-card>
+
+    <br>
+
+    <mat-accordion *ngIf="searchResults.category == 'launch'">
+        <mat-expansion-panel *ngFor="let meal of searchResults.result">
+        <mat-expansion-panel-header>
+            <mat-panel-title>
+                {{meal.name}}
+            </mat-panel-title>
+        </mat-expansion-panel-header>
+
+        <div *ngFor="let detail of meal.category">
+            <mat-expansion-panel>
+                <mat-expansion-panel-header>
+                    <mat-panel-title>
+                    Calories Per: {{detail.type}} : {{detail.cals}}
+                    </mat-panel-title>
+               </mat-expansion-panel-header>
+                <p>Protein: {{detail.facts.protein}}</p>
+                <p>Carbs: {{detail.facts.carb}}</p>
+                <p>Fats: {{detail.facts.fat}}</p>
+
+                <button mat-raised-button color="primary" [value]="meal._id" (click)="addFood(meal._id, 'launch', detail.type)" >Add Food</button>
+            </mat-expansion-panel>
+        </div>
+        </mat-expansion-panel>
+    </mat-accordion>
+
+
+</mat-card>
+<br>
+
+<mat-card>
+    <mat-card-title>Dinner:  </mat-card-title>
+    <br>
+    <form class="search-form" (submit)="onSearch('dinner'); $event.preventDefault()" >
+        <mat-form-field class="search-full-width" appearance="fill">
+            <mat-label>Search Food ...</mat-label>
+            <input type="text" matInput [formControl]="searchForm" placeholder="Food">
+        </mat-form-field>
+    </form>
+    <br>
+
+    <h2 *ngIf="getMealsByCategoryType('dinner')">Meals</h2>
+    <mat-card *ngFor="let meal of getMealsByCategoryType('dinner')">
+        <mat-card-title>{{meal?.name}}</mat-card-title>
+        <mat-card-header>Count: {{meal?.count}}</mat-card-header>
+        <mat-card-header>Total Calories: {{meal?.cals * meal?.count}}</mat-card-header>
+        <mat-card-header>Protein: {{meal?.facts?.protein}}, Carbs: {{meal?.facts?.carb}} Fats:{{meal?.facts?.fat}}  </mat-card-header>
+
+        <br>
+
+        <button mat-raised-button color="warn" (click)="deleteMeal(meal.mealId, 'dinner')">Delete</button>
+
+
+    </mat-card>
+
+    <br>
+    <mat-accordion *ngIf="searchResults.category == 'dinner'">
+        <mat-expansion-panel *ngFor="let meal of searchResults.result">
+        <mat-expansion-panel-header>
+            <mat-panel-title>
+                {{meal.name}}
+            </mat-panel-title>
+        </mat-expansion-panel-header>
+
+        <div *ngFor="let detail of meal.category">
+            <mat-expansion-panel>
+                <mat-expansion-panel-header>
+                    <mat-panel-title>
+                    Calories Per: {{detail.type}} : {{detail.cals}}
+                    </mat-panel-title>
+               </mat-expansion-panel-header>
+                <p>Protein: {{detail.facts.protein}}</p>
+                <p>Carbs: {{detail.facts.carb}}</p>
+                <p>Fats: {{detail.facts.fat}}</p>
+
+                <button mat-raised-button color="primary" [value]="meal._id" (click)="addFood(meal._id, 'dinner', detail.type)" >Add Food</button>
+            </mat-expansion-panel>
+        </div>
+        </mat-expansion-panel>
+    </mat-accordion>
+
+    <mat-card>
+
+    </mat-card>
+
+</mat-card>
+
+<br>
+
+<mat-card>
+    <mat-card-title>Snacks:  </mat-card-title>
+    <br>
+    <form class="search-form" (submit)="onSearch('snack'); $event.preventDefault()" >
+        <mat-form-field class="search-full-width" appearance="fill">
+            <mat-label>Search Food ...</mat-label>
+            <input type="text" matInput [formControl]="searchForm" placeholder="Food">
+        </mat-form-field>
+    </form>
+    <br>
+
+    <h2 *ngIf="getMealsByCategoryType('snack')">Meals</h2>
+    <mat-card *ngFor="let meal of getMealsByCategoryType('snack')">
+        <mat-card-title>{{meal?.name}}</mat-card-title>
+        <mat-card-header>Count: {{meal?.count}}</mat-card-header>
+        <mat-card-header>Total Calories: {{meal?.cals * meal?.count}}</mat-card-header>
+        <mat-card-header>Protein: {{meal?.facts?.protein}}, Carbs: {{meal?.facts?.carb}} Fats:{{meal?.facts?.fat}}  </mat-card-header>
+        <br>
+
+        <button mat-raised-button color="warn" (click)="deleteMeal(meal.mealId, 'snack')">Delete</button>
+
+
+    </mat-card>
+
+    <br>
+    <mat-accordion *ngIf="searchResults.category == 'snack'">
+        <mat-expansion-panel *ngFor="let meal of searchResults.result">
+        <mat-expansion-panel-header>
+            <mat-panel-title>
+                {{meal.name}}
+            </mat-panel-title>
+        </mat-expansion-panel-header>
+
+        <div *ngFor="let detail of meal.category">
+            <mat-expansion-panel>
+                <mat-expansion-panel-header>
+                    <mat-panel-title>
+                    Calories Per: {{detail.type}} : {{detail.cals}}
+                    </mat-panel-title>
+               </mat-expansion-panel-header>
+                <p>Protein: {{detail.facts.protein}}</p>
+                <p>Carbs: {{detail.facts.carb}}</p>
+                <p>Fats: {{detail.facts.fat}}</p>
+
+                <button mat-raised-button color="primary" [value]="meal._id" (click)="addFood(meal._id, 'snack', detail.type)" >Add Food</button>
+            </mat-expansion-panel>
+        </div>
+        </mat-expansion-panel>
+    </mat-accordion>
+
+    <mat-card>
+
+    </mat-card>
+
+</mat-card>
+
+

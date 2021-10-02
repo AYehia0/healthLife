@@ -1,0 +1,27 @@
+<mat-toolbar color="primary">
+  <span>HealthLife</span>
+  <span class="nav-space"></span>
+    <ul>
+
+      <li *ngIf="!isUserAuth">
+        <a mat-button routerLink="/user/login" routerLinkActive="mat-accent">Login</a>
+      </li>
+
+      <li *ngIf="!isUserAuth">
+        <a mat-button routerLink="/user/register" routerLinkActive="mat-accent">Register</a>
+      </li>
+
+      <li *ngIf="isUserAuth">
+        <a mat-button routerLink="/user/dashboard" routerLinkActive="mat-accent">Dashboard</a>
+      </li>
+
+      <li *ngIf="isUserAuth">
+        <a mat-button routerLink="/user/profile" routerLinkActive="mat-accent">Profile</a>
+      </li>
+
+      <li *ngIf="isUserAuth">
+        <button mat-button routerLinkActive="mat-accent" (click)="logout()" >Logout</button>
+      </li>
+
+    </ul>
+</mat-toolbar>

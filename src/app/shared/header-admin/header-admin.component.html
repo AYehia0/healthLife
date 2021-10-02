@@ -1,0 +1,23 @@
+<mat-toolbar color="primary">
+  <span>Admin Dashboard </span>
+  <span class="nav-space"></span>
+    <ul>
+
+      <li *ngIf="!isUserAuth">
+        <a mat-button routerLink="/admin/login" routerLinkActive="mat-accent">Login</a>
+      </li>
+
+      <li *ngIf="isUserAuth">
+        <a mat-button routerLink="/admin/dashboard/show" routerLinkActive="mat-accent">Show Foods</a>
+      </li>
+
+      <li *ngIf="isUserAuth">
+        <a mat-button routerLink="/admin/dashboard/add" routerLinkActive="mat-accent">Add Food</a>
+      </li>
+
+      <li *ngIf="isUserAuth">
+        <button mat-button routerLinkActive="mat-accent" (click)="logout()" >Logout</button>
+      </li>
+
+    </ul>
+</mat-toolbar>

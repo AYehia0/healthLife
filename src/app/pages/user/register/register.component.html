@@ -1,0 +1,118 @@
+
+<mat-card>
+    <form [formGroup]="registerForm" (ngSubmit)="onRegister()" >
+
+        <mat-card class="main-info">
+
+            <mat-form-field>
+                <mat-label>Name</mat-label>
+                <input type="text" matInput placeholder="Name" formControlName="name">
+            </mat-form-field>
+
+            <br>
+            <mat-form-field>
+                <mat-label>Email</mat-label>
+                <input type="email" matInput placeholder="Email" formControlName="email">
+            </mat-form-field>
+
+            <br>
+            <mat-form-field>
+                <mat-label>Password</mat-label>
+                <input type="password" [type]="hide ? 'password' : 'text'" matInput placeholder="Password" formControlName="password">
+
+                <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+                <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                </button>
+
+                <!-- [type]="hide ? 'password' : 'text'" -->
+            </mat-form-field>
+            <br>
+
+        </mat-card>
+
+        <mat-stepper orientation="horizontal" [linear]="true" #stepper>
+        <mat-step [stepControl]="firstFormGroup">
+
+            <br>
+            <form [formGroup]="registerForm">
+            <ng-template matStepLabel>Age</ng-template>
+            <mat-form-field appearance="fill" formGroupName="personal">
+                <mat-label>What is your age?</mat-label>
+                <input matInput placeholder="Age" required type="number" formControlName="age">
+            </mat-form-field>
+            <div>
+                <button mat-button matStepperNext>Next</button>
+            </div>
+            </form>
+
+        </mat-step>
+        <mat-step [stepControl]="secondFormGroup">
+
+            <br>
+            <form [formGroup]="secondFormGroup">
+
+            <ng-template matStepLabel>Gender</ng-template>
+            <mat-form-field appearance="fill">
+            <mat-label>What is your gender?</mat-label>
+            <mat-select [(value)]="userSpecific.selectedGender">
+                <mat-option *ngFor="let gender of genders" [value]="gender.value">
+                {{gender.value}}
+                </mat-option>
+            </mat-select>
+            </mat-form-field>
+
+            <div>
+                <button mat-button matStepperPrevious>Back</button>
+                <button mat-button matStepperNext>Next</button>
+            </div>
+
+            </form>
+
+        </mat-step>
+        <mat-step>
+            <br>
+
+            <ng-template matStepLabel>Activity Level</ng-template>
+            <mat-form-field appearance="fill">
+            <mat-label>What is your activity level ?</mat-label>
+            <mat-select [(value)]="userSpecific.activityLvl">
+                <mat-option *ngFor="let level of activityLvls" [value]="level.val">
+                {{level.lvl}}
+                </mat-option>
+            </mat-select>
+            </mat-form-field>
+            <div>
+                <button mat-button matStepperPrevious>Back</button>
+                <button mat-button matStepperNext>Next</button>
+            </div>
+
+
+            <br>
+
+            <ng-template matStepLabel>Height and Weight</ng-template>
+            <mat-form-field appearance="fill" formGroupName="personal">
+                <mat-label>What is your weight ?</mat-label>
+                <input type="number" maxlength="400" minlength="40" required matInput formControlName="weight">
+            </mat-form-field>
+
+            <mat-form-field appearance="fill" formGroupName="personal">
+                <mat-label>What is your height ?</mat-label>
+                <input type="number" maxlength="250" minlength="80" required matInput formControlName="height">
+            </mat-form-field>
+ 
+            <ng-template matStepLabel>Done</ng-template>
+            <p>You are now done.</p>
+            <div>
+            <button mat-button matStepperPrevious>Back</button>
+            <button mat-button (click)="stepper.reset()">Reset</button>
+            </div>
+
+
+        </mat-step>
+
+        </mat-stepper>
+
+        <button mat-raised-button color="primary">Register</button>
+    </form>
+</mat-card>
+
