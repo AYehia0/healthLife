@@ -25,6 +25,7 @@ const register = async (req, res) => {
             message: message,
             data: ""
         }) 
+
     }
 }
 
@@ -112,10 +113,51 @@ const profile = async (req, res) => {
     }
 }
 
+const editProfile = async (req, res) => {
+
+    try {
+        // showing the user 
+        const user = req.user
+        const profileEditUser = req.body
+
+        for (let edit of Object.keys(profileEditUser)){
+
+            // check if edit is not personal : password, name
+            if (edit == 'name')
+                user.name = profileEditUser[edit]
+
+            if (edit == 'password' && profileEditUser.password != "")
+                user.password = profileEditUser[edit]
+
+            if (edit == 'weight')
+                user.personal.weight = profileEditUser[edit]
+
+            if (edit == 'height')
+                user.personal.height = profileEditUser[edit]
+        }
+
+        await user.save()
+        
+        res.status(200).send({
+            status: true,
+            message: "",
+            data: user
+        })
+       
+    } catch (e) {
+        res.send({
+                status: false,
+                message: e.message,
+                data: ""
+        }) 
+    }
+
+}
 
 module.exports = {
     register,
     login,
     logout,
-    profile
+    profile,
+    editProfile
 }
