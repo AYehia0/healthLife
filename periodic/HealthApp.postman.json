@@ -1,0 +1,879 @@
+{
+	"info": {
+		"_postman_id": "b08498f1-8353-48bc-83bc-b92e4fe6be56",
+		"name": "HealthApp",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Admin",
+			"item": [
+				{
+					"name": "Settings",
+					"item": [
+						{
+							"name": "Logout",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MTUyZWViODAyMmQ3YmJhY2E0NTViMTUiLCJpYXQiOjE2MzI4MjU1MTZ9.b1Fq6i3mVpV69YhtKbrqfEYXeETwRED0E3e_CwQjkUc",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "http://localhost:8080/topSecretRoute/logout-admin",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"topSecretRoute",
+										"logout-admin"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Login",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"adminEmail\" : \"adminEmail@admin.com\",\n    \"password\" : \"Admin1234!\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8080/topSecretRoute/login-admin",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"topSecretRoute",
+										"login-admin"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Profile",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MTUyZWViODAyMmQ3YmJhY2E0NTViMTUiLCJpYXQiOjE2MzI4MjU1MTZ9.b1Fq6i3mVpV69YhtKbrqfEYXeETwRED0E3e_CwQjkUc",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "http://localhost:8080/topSecretRoute/profile-admin",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"topSecretRoute",
+										"profile-admin"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Register",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"name\" : \"adminIsHere\",\n    \"role\" : \"admin\",\n    \"adminEmail\" : \"adminEmail@admin.com\",\n    \"password\" : \"Admin1234!\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8080/topSecretRoute/register-admin",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"topSecretRoute",
+										"register-admin"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Food",
+					"item": [
+						{
+							"name": "Get FoodItem",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "",
+										"type": "text",
+										"disabled": true
+									}
+								],
+								"url": {
+									"raw": "localhost:8080/food?name=p",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"food"
+									],
+									"query": [
+										{
+											"key": "name",
+											"value": "p"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get FoodItemById",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "",
+										"type": "text",
+										"disabled": true
+									}
+								],
+								"url": {
+									"raw": "localhost:8080/food?name=p",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"food"
+									],
+									"query": [
+										{
+											"key": "name",
+											"value": "p"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Edit FoodItem",
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MTU1YzEzNTI3NTZiZGQ4NTAyMTY5NDgiLCJpYXQiOjE2MzMxMTA4MDV9.pUgMhA-YgJuwlMrMiUFMoWz32w2iVviiTnIhoSgduS8",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"name\" : \"Sweet Potato\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:8080/food/6155bf7218db308b3f045c8c",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"food",
+										"6155bf7218db308b3f045c8c"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Add FoodItem",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MTUyZWViODAyMmQ3YmJhY2E0NTViMTUiLCJpYXQiOjE2MzI4MjYwMjZ9.dIFJ6H5OCRFLYoUP8MTWq4hrIrIU8UVr8zaV3TJjkTM",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"name\" : \"Potato\",\n    \"category\": [\n        {\n            \"type\" : \"Gram\",\n            \"facts\" : {\n                \"protein\" : 2,\n                \"fat\": 1.5,\n                \"carb\": 8\n            }\n        }\n    ]\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:8080/food",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"food"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Add Cateogry",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MTUyZWViODAyMmQ3YmJhY2E0NTViMTUiLCJpYXQiOjE2MzI4MjYwMjZ9.dIFJ6H5OCRFLYoUP8MTWq4hrIrIU8UVr8zaV3TJjkTMv",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "\n{\n            \"type\" : \"Gram\",\n            \"facts\" : {\n                \"protein\" : 2,\n                \"fat\": 1.5,\n                \"carb\": 99\n            }\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:8080/category/614e13526ac3b645fd76c5cf?",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"category",
+										"614e13526ac3b645fd76c5cf"
+									],
+									"query": [
+										{
+											"key": "",
+											"value": null
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Edit Category",
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MTUyZWViODAyMmQ3YmJhY2E0NTViMTUiLCJpYXQiOjE2MzI4MjYwMjZ9.dIFJ6H5OCRFLYoUP8MTWq4hrIrIU8UVr8zaV3TJjkTM",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n            \"type\" : \"Serving not\",\n            \"facts\" : {\n                \"protein\" : 2,\n                \"fat\": 7,\n                \"carb\": 40, \n                \"something\": 0\n            }\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:8080/category/614e0dbd664647b74b325e78",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"category",
+										"614e0dbd664647b74b325e78"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Delete Category",
+							"request": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MTUyZWViODAyMmQ3YmJhY2E0NTViMTUiLCJpYXQiOjE2MzI4MjYwMjZ9.dIFJ6H5OCRFLYoUP8MTWq4hrIrIU8UVr8zaV3TJjkTM",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:8080/category/614e0dbd664647b74b325e78",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"category",
+										"614e0dbd664647b74b325e78"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Delete FoodItem",
+							"request": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MTUyZWViODAyMmQ3YmJhY2E0NTViMTUiLCJpYXQiOjE2MzI4MjYwMjZ9.dIFJ6H5OCRFLYoUP8MTWq4hrIrIU8UVr8zaV3TJjkTM",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n            \"type\" : \"Serving not\",\n            \"facts\" : {\n                \"protein\" : 2,\n                \"fat\": 7,\n                \"carb\": 40, \n                \"something\": 0\n            }\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:8080/food/614e0dbd664647b74b325e78",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"food",
+										"614e0dbd664647b74b325e78"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "User",
+			"item": [
+				{
+					"name": "User Auth",
+					"item": [
+						{
+							"name": "Login",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"email\": \"someone123@gmail.com\",\n    \"password\": \"Someone123!@#\"\n} ",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:8080/user/login",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"user",
+										"login"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Register",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"name\": \"SomeOne\",\n    \"email\": \"someone123@gmail.com\",\n    \"password\": \"Someone123!@#\",\n    \"personal\": {\n        \"age\": 20,\n        \"activity\": \"high\",\n        \"height\": 176,\n        \"weight\": 70\n    }\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:8080/user/register",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"user",
+										"register"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Profile",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MTRlNDBiMDNmODA1ZjgwNmYwOGFiMTkiLCJpYXQiOjE2MzI1NjE0NDh9.BR9g_BDkmp5g6Sza_NjuT8gCXoOQDgGIBP1KJZetm3I",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "localhost:8080/user/profile",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"user",
+										"profile"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Profile Edit",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MTRlNDBiMDNmODA1ZjgwNmYwOGFiMTkiLCJpYXQiOjE2MzI1NjE0NDh9.BR9g_BDkmp5g6Sza_NjuT8gCXoOQDgGIBP1KJZetm3I",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "localhost:8080/user/profile",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"user",
+										"profile"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Logout",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MTRlNDBiMDNmODA1ZjgwNmYwOGFiMTkiLCJpYXQiOjE2MzI1MjA3MzV9.7omoXi8tVagPmFE8uur5C3dUh1NX3P4TFrLLRgUSe-8s",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "http://localhost:8080/user/logout",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"user",
+										"logout"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "User Food",
+					"item": [
+						{
+							"name": "Add Food",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MTUyZWVkMjAyMmQ3YmJhY2E0NTViMTciLCJpYXQiOjE2MzI5MzI5MjZ9.hBOG-mSooFP2qjj_R_Xh1uK1QUDSV_YGZxb0KqUOsWE",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"mealId\" : \"61542f8d9567ffe21c096548\",\n    \"categories\": {\n        \"type\" : \"snack\"\n    }\n\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8080/user/food",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"user",
+										"food"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get Food All",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MTUyZWVkMjAyMmQ3YmJhY2E0NTViMTciLCJpYXQiOjE2MzI5MzI5MjZ9.hBOG-mSooFP2qjj_R_Xh1uK1QUDSV_YGZxb0KqUOsWE",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8080/user/foodall",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"user",
+										"foodall"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Delete Food (all)",
+							"request": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MTUyZWVkMjAyMmQ3YmJhY2E0NTViMTciLCJpYXQiOjE2MzI5MDk1OTV9.OdmlZdcvv3oiZQd80A8xFzwe_gMMuh8gsvPOEQF6Eek",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8080/user/food/61542dfa54ee9e1f62a3a2b4",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"user",
+										"food",
+										"61542dfa54ee9e1f62a3a2b4"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Delete Food (one)",
+							"request": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MTUyZWVkMjAyMmQ3YmJhY2E0NTViMTciLCJpYXQiOjE2MzI5MDk1OTV9.OdmlZdcvv3oiZQd80A8xFzwe_gMMuh8gsvPOEQF6Eek",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8080/user/foodone/61542dfa54ee9e1f62a3a2b4",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"user",
+										"foodone",
+										"61542dfa54ee9e1f62a3a2b4"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Delete Fav",
+							"request": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MTUyZWVkMjAyMmQ3YmJhY2E0NTViMTciLCJpYXQiOjE2MzI5MDk1OTV9.OdmlZdcvv3oiZQd80A8xFzwe_gMMuh8gsvPOEQF6Eek",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"types\": [\"snack\", \"dinner\"],\n    \"mealId\" : \"61542dfa54ee9e1f62a3a2b0\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8080/user/foodfav/61542dfa54ee9e1f62a3a2b0",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"user",
+										"foodfav",
+										"61542dfa54ee9e1f62a3a2b0"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Add Food Fav",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MTUyZWVkMjAyMmQ3YmJhY2E0NTViMTciLCJpYXQiOjE2MzI5MDk1OTV9.OdmlZdcvv3oiZQd80A8xFzwe_gMMuh8gsvPOEQF6Eek",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"types\": [\"snack\", \"dinner\"],\n    \"mealId\" : \"61542dfa54ee9e1f62a3a2b0\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8080/user/foodfav",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"user",
+										"foodfav"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Update Cals",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MTUyZWVkMjAyMmQ3YmJhY2E0NTViMTciLCJpYXQiOjE2MzI5MDk1OTV9.OdmlZdcvv3oiZQd80A8xFzwe_gMMuh8gsvPOEQF6Eek",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"types\": [\"snack\", \"dinner\"],\n    \"mealId\" : \"61542dfa54ee9e1f62a3a2b0\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8080/user/foodfav",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"user",
+										"foodfav"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get Total Cals",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MTU0YzJhNmQ5NGVjMTM4Y2JhYzQyMzIiLCJpYXQiOjE2MzMwMDc4MjZ9.K6e_7R8CVqFeWd6odmomj-Dx61uCrBbsylMnPa-IsP8",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"types\": [\"snack\", \"dinner\"],\n    \"mealId\" : \"61542dfa54ee9e1f62a3a2b0\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8080/user/foodcals",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"user",
+										"foodcals"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get Food By Category",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MTU0YzJhNmQ5NGVjMTM4Y2JhYzQyMzIiLCJpYXQiOjE2MzMwMDc4MjZ9.K6e_7R8CVqFeWd6odmomj-Dx61uCrBbsylMnPa-IsP8",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"types\": [\"snack\", \"dinner\"],\n    \"mealId\" : \"61542dfa54ee9e1f62a3a2b0\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8080/user/foodcals",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"user",
+										"foodcals"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		}
+	]
+}
