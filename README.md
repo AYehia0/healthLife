@@ -31,7 +31,15 @@ Since the app is still under development it may contain some unhandled bugs.
   - Some Frontend bad pactices mixed with un-used code : ```[REFACTORING]```
 
 # ScreenShots
-
+![Screenshot](/periodic/ss/user-dashboard.png)
+<br/>
+![Screenshot](/periodic/ss/admin-dashboard.png)
+<br/>
+![Screenshot](/periodic/ss/user-register.png)
+<br/>
+![Screenshot](/periodic/ss/login.png)
+<br/>
+![Screenshot](/periodic/ss/add-category.png)
 
 # Requirements 
 
@@ -46,7 +54,7 @@ The used tech :
 For Testing :
 
   - The backend runs on : ```8080``` while the front runs on the default.
-  - Have a look at the postman collection i made : []()
+  - Have a look at the postman collection i made : [here](/periodic/HealthApp.postman.json)
 
 # ToDo 
   
