@@ -9,6 +9,9 @@ router.post('/food', auth, controller.userAddFood )
 // get all meals
 router.get('/foodall', auth, controller.userGetAllMeals )
 
+// get food by section : breakfast, dinner, ... etc
+router.get('/foodtype', auth, controller.getFoodByCategoryType )
+
 // user delete food
 router.delete('/food/:id', auth, controller.userDeleteFood )
 
