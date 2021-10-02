@@ -43,8 +43,17 @@ const auth = async (req, res, next) => {
         
     } catch (e) {
         if (e.message == "invalid signature")
-            return res.send("Invalid Token")
-        return res.send(e.message)
+            return res.send({
+                status: false,
+                message: "Invalid Token",
+                data: ""
+            }) 
+        return res.send({
+            status: false,
+            message: e.message,
+            data: ""
+        }) 
+
     }
 }
 
