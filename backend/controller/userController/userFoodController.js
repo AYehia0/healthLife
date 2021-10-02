@@ -24,6 +24,8 @@ const userAddFood = async (req, res) => {
 
         const verify = await Item.findById(mealId)
 
+        // get cals ... 
+
         if (!verify)
             throw new Error("MealID is Invalid: Make sure it exists")
 
@@ -38,6 +40,9 @@ const userAddFood = async (req, res) => {
 
         const mealInd = findMealById(userMeals, meal.mealId)
        
+        // TODO : add the facts to db
+        const facts = verify.category.find(el => el.type = mealType).facts
+
         // update
         if (mealInd != -1) {
             // counting based on the category  =>  type
@@ -108,6 +113,10 @@ const getFoodByCategoryType = async (req, res) => {
         // getting user's info 
         const userTypes = ['breakfast', 'dinner', 'launch', 'snack']
         const userMeals = req.user.food.meals
+
+        if (!userMeals)
+            throw new Error("User Doens't have any meals")
+
         const finalResult = []
         // searching user for meals by type
 
@@ -120,6 +129,11 @@ const getFoodByCategoryType = async (req, res) => {
                 
                 // getting info 
                 const mealInfo = await Item.findById(mealId)
+
+                // check if the meal doensn't exsit 
+                if (! mealInfo)
+                    continue
+
                 const mealName = mealInfo.name
                 const types = mealInfo.category.find(el => el.type = type)
                 const mealCals = types.cals
@@ -152,7 +166,6 @@ const getFoodByCategoryType = async (req, res) => {
         
         
     } catch (e) {
-        console.log(e)
          res.send({
             status: false,
             message: "Can't Search, something is wrong",
@@ -391,6 +404,12 @@ const userGetAllCalories = async (req, res) => {
             
             const mealId = meal.mealId
 
+            const verify = await Item.findById(mealId)
+            
+            // checking if not found ,, maybe deleted or something idk
+            if (! verify)
+                continue
+
             // getting user's meal categories 
             const userCategories = meal.categories.filter(el => el.category)
 
@@ -430,6 +449,7 @@ const userGetAllCalories = async (req, res) => {
 module.exports = {
     userAddFood,
     userGetAllMeals,
+    getFoodByCategoryType,
     userDeleteFood,
     userDeleteFoodOne,
     userAddFoodFavourite,
