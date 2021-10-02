@@ -11,6 +11,9 @@ router.post('/category/:id', auth, controller.addCategory)
 // editing a category
 router.put('/category/:id', auth, controller.editCategory)
 
+// delete a category
+router.delete('/category/:id', auth, controller.deleteCategory)
+
 // get Items 
 // search by name + range ,,, 0 range returns all
 // curl -X GET "localhost:8080/food?name=pie&range=0" 
@@ -21,6 +24,9 @@ router.get('/food/:id', controller.getItemById)
 
 // edit Item 
 router.put('/food/:id', auth,  controller.editItem)
+
+// delete Item 
+router.delete('/food/:id', auth,  controller.deleteItem)
 
 module.exports = router
 
