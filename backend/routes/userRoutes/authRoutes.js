@@ -1,4 +1,4 @@
-const router = require('express').Router()
+const router = require('express').Router({mergeParams: true})
 const controller = require('../../controller/userController/userController')
 const auth = require('../../middlewares/userAuth')
 
@@ -14,6 +14,9 @@ router.get('/logout', auth, controller.logout)
 
 // profile
 router.get('/profile', auth, controller.profile)
+
+// edit profile
+router.put('/profile', auth, controller.editProfile)
 
 
 module.exports = router
