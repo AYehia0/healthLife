@@ -13,11 +13,21 @@ const addItem = async (req, res, err) => {
         if (!saveItem)
             res.send("Error")
 
-        // done
-        res.send(`Added a new item: ${newItem}`)
+        res.status(200).send({
+            status: true,
+            message: "Added a new item : success",
+            data: newItem 
+        })
+
+
 
     }catch(e) {
-        res.send(e.message)
+        res.send({
+            status: false,
+            message: e.message,
+            data: ""
+        }) 
+
     }
 
 }
@@ -29,17 +39,22 @@ const getItemById = async (req, res) => {
 
         const item = await Item.findById(itemId)
         if (!item)
-            res.send("Error")
+            throw new Error("Item not found")
 
         // done
-         res.status(200).send({
+        res.status(200).send({
             status: true,
             message: "Get item : success",
             data: item
         })
         
     }catch(e) {
-        res.send(e.message)
+        res.send({
+            status: false,
+            message: e.message,
+            data: ""
+        }) 
+
     }
 
 
@@ -69,7 +84,12 @@ const getItems = async (req, res, err) => {
             res.send(data)
 
     }catch(e) {
-        res.send(e)
+        res.send({
+            status: false,
+            message: e.message,
+            data: ""
+        }) 
+
     }
 
 }
@@ -101,10 +121,19 @@ const addCategory = async (req, res, err) => {
         // saving 
         await item.save()
 
-        res.send(`Added Category to : ${item}`)
+        res.status(200).send({
+            status: true,
+            message: "Added a category : success",
+            data: item 
+        })
 
     }catch(e){
-        res.send(e.message) 
+        res.send({
+            status: false,
+            message: e.message,
+            data: ""
+        }) 
+
     }
 }
 
@@ -133,18 +162,27 @@ const editCategory = async (req, res, err) => {
         item.category[categoryInd] = req.body
 
         // saving
-        await item.save()
+        await item.save() 
 
-        res.send(`Updated a category ${categoryInd} : ${item}`)
+        res.status(200).send({
+            status: true,
+            message: "Updated a category : success",
+            data: item 
+        })
         
     } catch (e) {
-        res.send(e.message) 
+        res.send({
+            status: false,
+            message: e.message,
+            data: ""
+        }) 
+
+
     }
 }
 
 // PUT : Change item's name
 const editItem = async (req, res, err) => {
-
     try {
         const allowedFields = ['name']
         const sentKeys = Object.keys(req.body)
@@ -162,18 +200,89 @@ const editItem = async (req, res, err) => {
         if(!item)
             throw new Error("Can't edit: Nothing to edit here")
 
-        res.send(`Item has been edited ${data}`)
-
         // editing the name 
         item.name = req.body.name
 
         await item.save()
 
-    }catch(e){
-        res.send(e.message) 
+        res.status(200).send({
+            status: true,
+            message: "Edit : success",
+            data: item 
+        })
+
+   }catch(e){
+        res.send({
+            status: false,
+            message: e.message,
+            data: ""
+        }) 
+
     }
 }
 
+// PUT : Change item's name
+const deleteItem = async (req, res, err) => {
+
+    try {
+
+        const itemId = req.params.id
+
+        // delete the item
+        const verify = await Item.findByIdAndDelete(itemId)
+
+        if (! verify)
+            throw new Error("Can't delete : Item not found ?")
+
+        res.status(200).send({
+            status: true,
+            message: "Delete : success",
+            data: verify
+        })
+        
+
+    }catch(e){
+        res.send({
+            status: false,
+            message: e.message,
+            data: ""
+        }) 
+
+    }
+
+}
+
+// TODO
+// delete a category
+const deleteCategory = async (req, res) => {
+    try {
+
+        const cateId = req.params.id
+
+        // delete the item
+        const verify = await Item.updateOne({'category._id': cateId}, {'$pull' : {'category' :{_id : cateId } }})
+
+        if (verify.modifiedCount == 0)
+            throw new Error("Cound not delete : Item not found ")
+
+        res.status(200).send({
+            status: true,
+            message: "Delete : success",
+            data: ""
+        })
+        
+
+    }catch(e){
+        res.send({
+            status: false,
+            message: e.message,
+            data: ""
+        }) 
+
+    }
+
+
+}
 
 // exporting the modules
 module.exports = {
@@ -182,6 +291,8 @@ module.exports = {
     getItems,
     editItem,
     addCategory,
-    editCategory
+    editCategory,
+    deleteCategory, 
+    deleteItem
 }
 
